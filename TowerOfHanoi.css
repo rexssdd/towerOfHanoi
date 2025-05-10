@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --background-color: #1A1A1E; /* Light Blue */
+  --navbar-color: #f5f5f5; /* Soft Blue */
+  --text-color: #000000; /* Deep Blue */
+  --optional-color: #42a5f5; /* Vibrant Blue */
+  --highlighted-color: #1e88e5; /* Medium Blue */
+  --afuckingcolor: #64b5f6; /* Sky Blue */
+  --afuckingtextcolor: #102027; /* Dark Blue-Grey */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    font-family: "Inter", sans-serif;
+    color: var(--navbar-color);
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.rod-a,
+.rod-b,
+.rod-c {
+    width: 33%;
+    height: 380px;
+    border-bottom: 2px solid #27BAFD;
+    border-radius: 2px;
+    position: relative; /* important for positioning the rod's pole inside */
+    z-index: 0; /* behind disks */
+}
+
+.rod-a::after,
+.rod-b::after,
+.rod-c::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 250px;
+    background-color: #27BAFD;
+    z-index: 0; /* this puts the rod pole behind disks */
+}
+
+.disk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 20px;
+    border-radius: 5px;
+    transition: all 0.5s ease; 
+    z-index: 1; /* make sure disks are above rods */
+}
+
+
+.moves-container::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  .moves-container::-webkit-scrollbar-track {
+    background: #1a1a1e;
+    border-radius: 0px;
+  }
+  
+  .moves-container::-webkit-scrollbar-thumb {
+    background: #0ea5e9;
+    border-radius: 0px;
+    transition: background 0.3s ease-in-out;
+  }

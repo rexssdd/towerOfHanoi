@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="sl-theme-dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower of Hanoi</title>
+    <link rel="stylesheet" href="TowerOfHanoi.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/dark.css" />
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+</head>
+
+<body>
+    <div class="top" style="
+    width: 90vw;
+    height: 100%;
+    border: solid 1px #8E8E9A;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;">
+        <label style="font-weight: 600; font-size: 18px; color: #27BAFD;">Tower of Hanoi</label>
+    </div>
+
+    <div class="content" style="
+    width: 90vw;
+    height: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;">
+        <div class="container" style="
+        width: 30%;
+        height: 100%;
+        border: solid 1px #8E8E9A;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-right: 5px;
+        ">
+
+            <div class="diskgroup-btn">
+                <sl-button variant="primary" id="btn-3" size="small">3</sl-button>
+                <sl-button variant="primary" id="btn-7" size="small">7</sl-button>
+                <sl-button variant="primary" id="btn-9" size="small">9</sl-button>
+            </div>
+            
+            <div class="moves-container" id="moves-container" style="
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            border: solid 1px #8E8E9A;
+            margin-top: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            ">
+             <div class="rod-control" style="
+                width: 100%;
+                height: 40px;
+                border-radius: 10px;
+                border: solid 1px #8E8E9A;
+                margin-top: 10px;
+                display: inline-flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                padding: 10px;
+                justify-content: space-evenly;">
+            <div class="move-count" id="move-count">Total Moves: 0</div>
+            <div class="move-count" id="move-ms">Time complexity: 0</div>
+         </div>
+                <div id="moves">
+                    <div id="move-steps"></div> <!-- Dynamic steps will go here -->
+                </div>
+                
+            </div>
+            <div class="buttongroup" style="margin-top: 10px;">
+                <sl-button class="start" variant="success" id="start" size="small">Start</sl-button>
+                <sl-button class="skip" variant="primary" id="skip" size="small">Skip</sl-button>
+                <sl-button class="speed" variant="primary" id="speed-toggle" size="small">2x</sl-button>
+                <sl-button class="speed" variant="primary" id="speed-toggle4x" size="small">4x</sl-button>
+                <sl-button class="speed" variant="primary" id="speed-toggle6x" size="small">6x</sl-button>
+                <sl-button class="clear" variant="danger" id="clear" size="small">Clear</sl-button>
+            </div>
+        </div>
+
+        <div class="rod-container" style="
+        width: 70%;
+        height: 590px;
+        border: solid 1px #8E8E9A;
+        border-radius: 10px;
+        margin-left: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        ">
+            <div class="rodLabel-group"
+                style="width: 100%; height: 50px; display: flex; justify-content: space-around; align-items: center; padding: 0 10px;">
+                <label style="font-weight: 600; font-size: 18px; color: #27BAFD; ">Rod A</label>
+                <label style="font-weight: 600; font-size: 18px; color: #27BAFD; ">Rod B</label>
+                <label style="font-weight: 600; font-size: 18px; color: #27BAFD; ">Rod C</label>
+            </div>
+            <div class="game-container" style="
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            ">
+                <div class="rod-a" id="rod-a"></div>
+                <div class="rod-b" id="rod-b"></div>
+                <div class="rod-c" id="rod-c"></div>
+            </div>
+        </div>
+    </div>
+    <script src="TowerOfHanoi.js"></script>
+</body>
+
+</html>
