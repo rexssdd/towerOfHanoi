@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show both values
     document.getElementById('time-complexity').innerHTML =
-        `Time Complexity: ${timeComplexity}<br>Execution Time: ${executionTime}`;
+        `<strong>Time Complexity:</strong> ${timeComplexity}<br>Execution Time: ${executionTime}`;
 
     // Start animating the moves
     moveDisks();
