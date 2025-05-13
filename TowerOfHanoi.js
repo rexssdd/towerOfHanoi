@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function updateMoveCount(diskCount) {
             const totalMoves = (2 ** diskCount) - 1;
-            document.getElementById('move-count').innerHTML = `Total Moves: ${totalMoves}`;
+            document.getElementById('move-count').innerHTML = `<strong>Total Moves:</strong> ${totalMoves}`;
 
              const timeComplexity = `O(2^${diskCount})`;
-            document.getElementById('move-ms').innerHTML = `Time complexity: ${timeComplexity}`;
+            document.getElementById('move-ms').innerHTML = `<strong>Time complexity:</strong> ${timeComplexity}`;
         }
 
         function clearRodC() {
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById('moves').innerText = '';
             document.getElementById('move-count').innerText = '';
-            document.getElementById('time-complexity').innerText = 'Time complexity: 0 ';
+            document.getElementById('time-complexity').innerHTML = '<strong>Time complexity:</strong> 0 ';
 
             // Reset the rods state
             rods = { a: [], b: [], c: [] };
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
             stepCount = 0;
         
             // Clear moves display
-            document.getElementById('move-count').innerHTML = 'Total Moves: 0';
+            document.getElementById('move-count').innerHTML = '<strong>Total Moves:</strong> 0';
         
             // Deselect all buttons (number of disks)
             const buttons = document.querySelectorAll('.options button');
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Show both values
                 document.getElementById('time-complexity').innerHTML =
-                    `Time Complexity: ${timeComplexity}<br>Execution Time: ${executionTime}`;
+                    `<strong>Time Complexity:</strong> ${timeComplexity}<br>Execution Time: ${executionTime}`;
 
             // Move all disks to rod C
             const rodC = document.getElementById('rod-c');
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ).join('<br>');
         
             document.getElementById('moves').innerHTML = `<br>${movesList}`;
-            document.getElementById('move-count').innerText = `Total Moves: ${moves.length}`;
+            document.getElementById('move-count').innerHTML = `<strong>Total Moves:</strong> ${moves.length}`;
         });
         
         
