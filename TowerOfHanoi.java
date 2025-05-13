@@ -2,8 +2,9 @@ import java.util.Stack;
 
 public class TowerOfHanoi {
 
+    @SuppressWarnings("unchecked")
     public static void solveHanoi(int n, char fromRod, char toRod, char auxRod) {
-        long startTime = System.currentTimeMillis(); // Start time
+        long startTime = System.nanoTime(); // Start time
 
         int totalMoves = (int) Math.pow(2, n) - 1;
         char[] rods = {fromRod, toRod, auxRod};
@@ -32,8 +33,8 @@ public class TowerOfHanoi {
             }
         }
 
-        long endTime = System.currentTimeMillis(); // End time
-        System.out.println("Time taken: " + (endTime - startTime) + " ms");
+        long endTime = System.nanoTime(); // End time
+        System.out.println("Time taken: " + (endTime - startTime)/1_000_000.0 + " ms");
     }
 
     private static boolean moveDisk(Stack<Integer> fromTower, Stack<Integer> toTower, char from, char to) {

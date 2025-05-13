@@ -4,7 +4,7 @@ public class modified {
     private static List<String> moves = new ArrayList<>();
     private static int selectedDiskCount = 0;
     private static int stepCount = 0;
-    private static int speedMultiplier = 1;
+   
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class modified {
             long startTime = System.nanoTime();
             hanoi(selectedDiskCount, 'A', 'C', 'B');
             long endTime = System.nanoTime();
-            double duration = (endTime - startTime) / 1_000_000.0;
+            double duration = (endTime - startTime)/1_000_000.0;
 
             int totalMoves = moves.size();
 
