@@ -1,25 +1,52 @@
+import java.util.Stack;
+
 public class TowerOfHanoi {
 
-    public static void solveHanoi(int n, String source, String destination, String auxiliary) {
-        if (n == 1) {
-            System.out.println("Move disk 1 from " + source + " to " + destination);
-            return;
+    public static void solveHanoi(int n, char fromRod, char toRod, char auxRod) {
+        long startTime = System.currentTimeMillis(); // Start time
+
+        int totalMoves = (int) Math.pow(2, n) - 1;
+        char[] rods = {fromRod, toRod, auxRod};
+
+        if (n % 2 == 0) {
+            char temp = toRod;
+            toRod = auxRod;
+            auxRod = temp;
         }
-        solveHanoi(n - 1, source, auxiliary, destination);
-        System.out.println("Move disk " + n + " from " + source + " to " + destination);
-        solveHanoi(n - 1, auxiliary, destination, source);
+
+        Stack<Integer>[] towers = new Stack[3];
+        for (int i = 0; i < 3; i++) {
+            towers[i] = new Stack<>();
+        }
+
+        for (int i = n; i >= 1; i--) {
+            towers[0].push(i);
+        }
+
+        for (int i = 1; i <= totalMoves; i++) {
+            int from = (i & i - 1) % 3;
+            int to = ((i | i - 1) + 1) % 3;
+
+            if (!moveDisk(towers[from], towers[to], rods[from], rods[to])) {
+                moveDisk(towers[to], towers[from], rods[to], rods[from]);
+            }
+        }
+
+        long endTime = System.currentTimeMillis(); // End time
+        System.out.println("Time taken: " + (endTime - startTime) + " ms");
+    }
+
+    private static boolean moveDisk(Stack<Integer> fromTower, Stack<Integer> toTower, char from, char to) {
+        if (!fromTower.isEmpty() && (toTower.isEmpty() || fromTower.peek() < toTower.peek())) {
+            toTower.push(fromTower.pop());
+            System.out.println("Move disk from " + from + " to " + to);
+            return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
-        int n = 3;  // Number of Disks
-
-        long startTime = System.currentTimeMillis(); // Start time
-
-        solveHanoi(n, "A", "C", "B");
-
-        long endTime = System.currentTimeMillis();   // End time
-        long executionTime = endTime - startTime;
-
-        System.out.println("Execution time: " + executionTime + " ms");
+        int n = 3; // Number of disks
+        solveHanoi(n, 'A', 'C', 'B');
     }
 }

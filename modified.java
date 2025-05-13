@@ -30,19 +30,11 @@ public class modified {
             System.out.println("Time Complexity: O(2^" + selectedDiskCount + ")");
             System.out.printf("Execution Time: %.3f ms\n", duration);
 
-            System.out.print("\nChoose speed (1, 2, 4, 6): ");
-            speedMultiplier = scanner.nextInt();
 
             System.out.println("\nStarting disk movements...\n");
-
             for (String move : moves) {
                 stepCount++;
                 System.out.println("Step " + stepCount + ": " + move);
-                try {
-                    Thread.sleep(500 / speedMultiplier);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
             }
 
             System.out.println("\n🎉 Finished moving all disks!\n");

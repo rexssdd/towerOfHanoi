@@ -37,7 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('rod-a').innerHTML = '';
             document.getElementById('rod-b').innerHTML = '';
             document.getElementById('rod-c').innerHTML = '';
-        
+
+            document.getElementById('moves').innerText = '';
+            document.getElementById('move-count').innerText = '';
+            document.getElementById('time-complexity').innerText = 'Time complexity: 0 ';
+
             // Reset the rods state
             rods = { a: [], b: [], c: [] };
         
@@ -96,10 +100,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
         
-        document.getElementById('btn-3').addEventListener('click', () => setDisks('rod-a', 3));
-       document.getElementById('btn-7').addEventListener('click', () => setDisks('rod-a', 7));
-        document.getElementById('btn-9').addEventListener('click', () => setDisks('rod-a', 9));
-        
+      function handleDiskSelection(button, diskCount) {
+            const buttons = document.querySelectorAll('.options button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            setDisks('rod-a', diskCount);
+        }
+
+        document.getElementById('btn-3').addEventListener('click', function() {
+            handleDiskSelection(this, 3);
+        });
+        document.getElementById('btn-7').addEventListener('click', function() {
+            handleDiskSelection(this, 7);
+        });
+        document.getElementById('btn-9').addEventListener('click', function() {
+            handleDiskSelection(this, 9);
+        });
+
         document.getElementById('skip').addEventListener('click', () => {
             if (selectedDiskCount === 0) {
                 alert("Please select the number of disks first!");
@@ -114,6 +131,8 @@ document.addEventListener("DOMContentLoaded", function () {
             moves = [];
             stepCount = 0;
         
+
+            
             // Generate the moves for the full solution (moving from rod A to rod C)
             function generateMoves(n, fromRod, toRod, auxRod) {
                 if (n === 1) {
@@ -125,9 +144,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 generateMoves(n - 1, auxRod, toRod, fromRod);
             }
         
-            // Generate all moves for the Tower of Hanoi
-            generateMoves(selectedDiskCount, 'a', 'c', 'b');
-        
+           
+                    
+                        // Start timing the hanoi() algorithm execution
+                const startTime = performance.now();
+                
+              // Generate all moves for the Tower of Hanoi
+                generateMoves(selectedDiskCount, 'a', 'c', 'b');
+                
+                // End timing immediately after algorithm completes
+                const endTime = performance.now();
+
+                // Calculate duration in ms
+                const duration = endTime - startTime;
+
+                // Theoretical total moves for Tower of Hanoi: 2^n - 1
+                const totalMoves = Math.pow(2, selectedDiskCount) - 1;
+
+                // Calculate and display time complexity with execution time
+                const timeComplexity = `O(2^${selectedDiskCount}-1) = ${totalMoves.toLocaleString()} moves`;
+                const executionTime = `${duration.toFixed(3)} ms`;
+
+                // Show both values
+                document.getElementById('time-complexity').innerHTML =
+                    `Time Complexity: ${timeComplexity}<br>Execution Time: ${executionTime}`;
+
             // Move all disks to rod C
             const rodC = document.getElementById('rod-c');
             for (let i = selectedDiskCount - 1; i >= 0; i--) {
@@ -151,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         
         
-       document.getElementById('start').addEventListener('click', () => {
+      document.getElementById('start').addEventListener('click', () => {
     const rodC = document.getElementById('rod-c');
     const rodCDisks = rodC.children.length;
 
@@ -181,14 +222,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // End timing immediately after algorithm completes
     const endTime = performance.now();
 
-    const duration = (endTime - startTime).toFixed(3); // Keep precision
+    // Calculate duration in ms
+    const duration = endTime - startTime;
 
-    // Display execution time
-    document.getElementById('move-ms').innerHTML = `Execution time: ${duration} ms`;
+    // Theoretical total moves for Tower of Hanoi: 2^n - 1
+    const totalMoves = Math.pow(2, selectedDiskCount) - 1;
 
-    // Start animating the moves (animation not included in time measurement above)
+    // Calculate and display time complexity with execution time
+    const timeComplexity = `O(2^${selectedDiskCount}-1) = ${totalMoves.toLocaleString()} moves`;
+    const executionTime = `${duration.toFixed(3)} ms`;
+
+    // Show both values
+    document.getElementById('time-complexity').innerHTML =
+        `Time Complexity: ${timeComplexity}<br>Execution Time: ${executionTime}`;
+
+    // Start animating the moves
     moveDisks();
 });
+
 
 
     
