@@ -47,7 +47,7 @@ public class TowerOfHanoi {
     }
 
     public static void main(String[] args) {
-        int n = 15; // Number of disks
+        int n = 3; // Number of disks
         solveHanoi(n, 'A', 'C', 'B');
     }
 }
