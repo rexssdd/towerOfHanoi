@@ -37,7 +37,7 @@ public class modified {
                 System.out.println("Step " + stepCount + ": " + move);
             }
 
-            System.out.println("\n🎉 Finished moving all disks!\n");
+            System.out.println("\n Finished moving all disks!\n");
             System.out.println("Would you like to try again? (y/n): ");
             if (!scanner.next().equalsIgnoreCase("y")) break;
         }
